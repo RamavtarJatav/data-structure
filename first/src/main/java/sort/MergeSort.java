@@ -16,7 +16,7 @@ public class MergeSort {
 			R[i] = a[m + i + 1];
 		}
 		print(R);
-		int i = 0;
+		int i = l;
 		int j = 0;
 		int k = 0;
 		while (j < sL && k < sR) {
@@ -28,6 +28,15 @@ public class MergeSort {
 				a[i] = R[k];
 				i++;
 				k++;
+			}else {
+				a[i]=L[j];
+				i++;
+				a[i]=R[k];
+				i++;
+				j++;
+				k++;
+				
+				
 			}
 		}
 
@@ -65,10 +74,11 @@ public class MergeSort {
 	}
 
 	public static void main(String[] args) {
-		int[] a = { 4, 5, 6, 7, 8, 9};
+		int[] a = { 8, 10, 4,3,9,1,11,2,6, 11};
 		print(a);
 		sort(a, 0, a.length - 1);
 		print(a);
+		
 
 	}
 }
