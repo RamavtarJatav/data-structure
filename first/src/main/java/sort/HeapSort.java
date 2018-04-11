@@ -1,6 +1,6 @@
 package sort;
 
-public class Heap {
+public class HeapSort{
 
 	static void maxHeap(int[] a) {
 		/*
