@@ -8,11 +8,9 @@ public class ExtractNum {
 		StringBuilder stb = new StringBuilder();
 		while (i < str.length()) {
 			if (Character.isDigit(str.charAt(i))) {
-				
 				num = Character.getNumericValue((str.charAt(i))) + num * 10;
 			} else {
-
-				System.out.println(num);
+				//System.out.println(num);
 				int j = 0;
 				if (!first) {
 					if(num != 0)
