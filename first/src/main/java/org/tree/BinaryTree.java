@@ -298,6 +298,23 @@ public class BinaryTree {
 	public void iterativePostOrderSingleStack() {
 		
 	}
+	
+	
+	public static  void treeReconstruction() {
+		
+        char in[] = new char[]{'D', 'B', 'E', 'A', 'F', 'C'};
+        char pre[] = new char[]{'A', 'B', 'D', 'E', 'C', 'F'};
+        int len= in.length;
+        for(int i=0;i<len;i++ ) {
+        	char ch= pre[0];
+        	for(int j=0;j<len;j++) {
+        		if(ch ==in[j]) {
+        			
+        		}
+        	}
+        }
+        
+	}
 
 	public static void main(String[] args) {
 		// 1
