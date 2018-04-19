@@ -75,53 +75,56 @@ public class Intesection {
 
 	static void quickSort(Node head) {
 
-		Node pivot = head;
+//		Node pivot = head;
+//
+//		Node lowhead = null;
+//
+//		//
+//		// Node posti = i.next;
+//		Node node = head;
+//		printList(head);
+//
+//		node.next = null;
+//		System.out.println();
+//		printList(head);
 
-		Node preIndex = head;
-		Node index = preIndex.next;
-		Node postIndex = index.next;
-
-		Node preStart = head;
-		Node start = preStart.next;
-		Node postStart = start.next;
-
-		while (start != null) {
-
-			if (pivot.data > start.data) {
-				if (index == start) {
-					//do nothing
-                
-				} else if (index.next == start) {
-					preIndex.next = start;
-					start.next = index;
-					index.next = postStart;
-					
-				}else {
-
-					preStart.next = index;
-					index.next = postStart;
-
-					preIndex.next = start;
-					start.next = postIndex;
-
-				
-
-					// swap
-
-				}
-				preIndex = preIndex.next;
-				index = index.next;
-				postIndex = postIndex.next;
-
-			}
-			
-			printList(head);
-			System.out.println();
-			preStart = preStart.next;
-			start = start.next;
-			postStart = postStart.next;
-
-		}
+//		while (node.next != null) {
+//			printList(head);
+//			System.out.println(); 
+//			
+//			
+//			if (pivot.data > node.next.data) {
+//				if (lowhead == null ) {
+//					lowhead = node.next;
+//					lowhead.next = null;
+//					
+//				}else {
+//					//Node temp = node.next;
+//					
+//					Node temp = node.next;
+//					temp.next = lowhead;
+//					
+//					lowhead = temp;
+//					
+//					
+//					
+//				}
+//				if (node.next.next != null) {
+//					node.next = node.next.next;
+//				}else {
+//					node.next=null;
+//				}
+//			}else {
+//				node = node.next;
+//			}
+//           
+//		}
+////		low.next = head;
+////		head = low;
+		
+		
+//		printList(lowhead);
+//		System.out.println(); 
 
 	}
 
@@ -138,6 +141,7 @@ public class Intesection {
 		linkedList1.next.next = new Node(2);
 		linkedList1.next.next.next = new Node(4);
 		linkedList1.next.next.next.next = new Node(3);
+		
 
 		Node linkedList2 = new Node(10);
 		linkedList2.next = new Node(15);
@@ -146,10 +150,15 @@ public class Intesection {
 		// Node n3 = intersectionList(linkedList1, linkedList2);
 		// printList(n3);
 		// printList(union(linkedList1, linkedList2));
+		// printList(linkedList1);
+		// System.out.println();
 		printList(linkedList1);
 		System.out.println();
-		mergeInterUnion(linkedList1, linkedList2);
+		Node node = linkedList1;
+		node.next = new Node(123);
 		printList(linkedList1);
+		mergeInterUnion(linkedList1, linkedList2);
+		// printList(linkedList1);
 	}
 
 }
