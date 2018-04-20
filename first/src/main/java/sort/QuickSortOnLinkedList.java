@@ -61,14 +61,14 @@ public class QuickSortOnLinkedList {
 
 	void quickSort(Node preStart, Node start, Node aftEnd) {
 ;
-		Node pid = partitionNode1(preStart, start, aftEnd);
-		System.out.println(pid.data);
-		if ( (head.next.data != pid.data) ) {
-			quickSort(null, head, pid);
+		Node start1 = partitionNode1(preStart, start, aftEnd);
+//		System.out.println(start1.data);
+		if ( (start1.next.data != start.data) ) {
+			quickSort(preStart, start1, start);
 		}
-		if (pid.next != null || pid.next.next != null) {
-			quickSort(pid, pid.next, aftEnd);
-		}
+//		if (pid.next != null || pid.next.next != null) {
+//			quickSort(start, pid.next, aftEnd);
+//		}
 	}
 
 	Node partitionNode1(Node preStart, Node start, Node aftEnd) {
@@ -114,7 +114,7 @@ public class QuickSortOnLinkedList {
 		}
 
 		if (prei == pivot) {
-			return pivot;
+			return prei;
 		}
 		if (preprei == pivot) {
 
@@ -141,7 +141,7 @@ public class QuickSortOnLinkedList {
 		}
 		
 		print();
-		return pivot;
+		return prei;
         
 		
 	}
