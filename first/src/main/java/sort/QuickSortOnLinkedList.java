@@ -52,23 +52,31 @@ public class QuickSortOnLinkedList {
 	void quickSort() {
 		if (head == null)
 			return;
-		
-		quickSort(null , head, null);
-	
-		
+
+		quickSort(null, head, null);
 
 	}
 
 	void quickSort(Node preStart, Node start, Node aftEnd) {
-;
-		Node start1 = partitionNode1(preStart, start, aftEnd);
-//		System.out.println(start1.data);
-		if ( (start1.next.data != start.data) ) {
-			quickSort(preStart, start1, start);
+		print();
+		Node startnew = partitionNode1(preStart, start, aftEnd);
+		// System.out.println(start1.data);
+		if (startnew.data != start.data) {
+			quickSort(preStart, startnew, start);
 		}
-//		if (pid.next != null || pid.next.next != null) {
-//			quickSort(start, pid.next, aftEnd);
-//		}
+		//System.out.println(start.data);
+		//System.out.println(start.next.data);
+		//System.out.println(aftEnd.data);
+		if (aftEnd == null) {
+			if (start.next != null) {
+				quickSort(start, start.next, aftEnd);
+			}
+		} else {
+			if (start.next.data != aftEnd.data) {
+				quickSort(start, start.next, aftEnd);
+			}
+
+		}
 	}
 
 	Node partitionNode1(Node preStart, Node start, Node aftEnd) {
@@ -76,13 +84,16 @@ public class QuickSortOnLinkedList {
 		Node prei = start;
 		Node node = start;
 		Node preprei = preStart;
+		//System.out.println(node.data);
+		// System.out.println(aftEnd.data);
+
 		while (node.next != aftEnd) {
 
-			print();
-			System.out.print("pre iteration=" + node.data);
-			System.out.print(" iteranation node=" + node.next.data);
-			System.out.print(" pivot node =" + pivot.data);
-			System.out.println();
+//			print();
+//			System.out.print("pre iteration=" + node.data);
+//			System.out.print(" iteranation node=" + node.next.data);
+//			System.out.print(" pivot node =" + pivot.data);
+//			System.out.println();
 
 			if (pivot.data > node.next.data) {
 				Node first = prei.next;
@@ -132,156 +143,63 @@ public class QuickSortOnLinkedList {
 
 		if (preStart == null) {
 			head = prei;
-		}else {
+		} else {
 			preStart.next = prei;
 		}
-		
-		if(aftEnd != null ) {
-			//node.next = aftEnd;
+
+		if (aftEnd != null) {
+			// node.next = aftEnd;
 		}
-		
-		print();
+
+		//print();
 		return prei;
-        
-		
+
 	}
 
-//	Node partitionNode(Node node, Node pi, Node end) {
-//		if (node == null)
-//			return null;
-//
-//		Node pivot = node;
-//		Node prei = node;
-//		Node preprei = null;
-//		if (pi == null || pi.next != node) {
-//			while (node.next != pi) {
-//				print();
-//				System.out.print("pre iteration=" + node.data);
-//				System.out.print(" iteranation node=" + node.next.data);
-//				System.out.println();
-//
-//				if (pivot.data > node.next.data) {
-//					Node first = prei.next;
-//					Node second = node.next;
-//
-//					if (first == second) {
-//						// doing nothing;
-//					} else if (first.next == second) {
-//						prei.next = second;
-//						Node temp = second.next;
-//						second.next = first;
-//						first.next = temp;
-//						node = second;
-//
-//					} else {
-//						prei.next = second;
-//						Node firstAft = first.next;
-//						Node secondAft = second.next;
-//						second.next = firstAft;
-//						node.next = first;
-//						first.next = secondAft;
-//
-//					}
-//					preprei = prei;
-//					prei = prei.next;
-//				}
-//
-//				node = node.next;
-//			}
-//
-//			print();
-//			// if nodes are adjecet
-//			if (prei == pivot) {
-//				return pivot;
-//			}
-//			if (preprei == pivot) {
-//
-//				pivot.next = prei.next;
-//				prei.next = pivot;
-//
-//			} else {
-//				// nodes are not adjecnt
-//				Node preiaft = prei.next;
-//				prei.next = pivot.next;
-//				preprei.next = pivot;
-//				pivot.next = preiaft;
-//
-//			}
-//
-//			head = prei;
-//			return pivot;
-//		} else {
-//			preprei = pi;
-//			while (node.next != null) {
-//				if (pivot.data > node.next.data) {
-//					Node first = prei.next;
-//					Node second = node.next;
-//
-//					if (first == second) {
-//						// doing nothing;
-//					} else if (first.next == second) {
-//						prei.next = second;
-//						Node temp = second.next;
-//						second.next = first;
-//						first.next = temp;
-//						node = second;
-//
-//					} else {
-//						prei.next = second;
-//						Node firstAft = first.next;
-//						Node secondAft = second.next;
-//						second.next = firstAft;
-//						node.next = first;
-//						first.next = secondAft;
-//
-//					}
-//					preprei = preprei.next;
-//					prei = prei.next;
-//				}
-//
-//				node = node.next;
-//			}
-//
-//			if (prei == pivot) {
-//				return pivot;
-//			}
-//
-//			if (preprei == pivot) {
-//
-//				pivot.next = prei.next;
-//				prei.next = pivot;
-//
-//			} else {
-//				// nodes are not adjecnt
-//				Node preiaft = prei.next;
-//				prei.next = pivot.next;
-//				preprei.next = pivot;
-//				pivot.next = preiaft;
-//
-//			}
-//
-//			pi.next = prei;
-//			return pivot;
-//
-//		}
-//
-//	}
-
+	
+	
 	public static void main(String[] args) {
 
 		QuickSortOnLinkedList qks = new QuickSortOnLinkedList();
 		// 5 6 10 8 2 3 1 0
-		qks.add(9);
-		qks.add(10);
-		qks.add(3);
-		qks.add(6);
-		qks.add(2);
 		qks.add(18);
-		qks.add(4);
-		qks.add(8);
+		qks.add(17);
+		qks.add(16);
 		qks.add(15);
-		qks.add(25);
-		qks.add(22);
+		qks.add(14);
+		qks.add(13);
+		qks.add(12);
+		qks.add(11);
+		qks.add(10);
+		qks.add(9);
+		qks.add(8);
+		qks.add(7);
+		qks.add(6);
+		qks.add(5);
+		qks.add(4);
+		qks.add(3);
+		qks.add(2);
+		qks.add(1);
+		
+//		qks.add(10);
+//		qks.add(9);
+//		qks.add(3);
+//		qks.add(6);
+//		qks.add(2);
+//		qks.add(18);
+//		qks.add(4);
+//		qks.add(8);
+//		qks.add(15);
+//		qks.add(25);
+//		qks.add(22);
+//		qks.add(50);
+//		qks.add(37);
+//		qks.add(39);
+//		qks.add(7);
+//		qks.add(12);
+//		qks.add(38);
+//		qks.add(16);
+//		
 		qks.print();
 		qks.quickSort();
 		qks.print();
