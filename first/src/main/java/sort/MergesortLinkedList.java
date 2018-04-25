@@ -25,9 +25,8 @@ public class MergesortLinkedList {
 
 	void print() {
 		print(head);
-		System.out.println(); 
-		
-		
+		System.out.println();
+
 	}
 
 	void print(Node node) {
@@ -46,32 +45,54 @@ public class MergesortLinkedList {
 	void sortUtil(Node pre, Node start, Node end) {
 
 		Node mid = getMid(start, end);
-		//if (start.next != end) {
-		//	sortUtil(pre, start, mid);
-		//	sortUtil(mid, mid.next, end);
-			merge(pre,start, mid , end);
-	//	}
+		if (start != end) {
+			sortUtil(pre, start, mid);
+			sortUtil(mid, mid.next, end);
+			merge(pre, start, mid, end);
+		}
 	}
 
-	void merge(Node pre , Node start, Node mid , Node end) {
+	void merge(Node pre, Node start, Node mid, Node end) {
+		Node preNode1 = pre;
 		Node node1 = start;
+
+		Node preNode2 = mid;
 		Node node2 = mid.next;
-	//	while(node1.next != mid || node2.next != end)  
-		
-			if(node1.data >= node2.data) {
-			   Node temp = node1.next;
-			   Node temp1 = node2.next;
-			   if(pre == null){
-				  node2.next = node1.next;
-				  mid.next = node1;
-				  node1.next = temp1;
-				  head = node2;
-			   }
-				//pre.next = node2;
-				//node2.next = node1.next;
-			   
-	}
-		
+
+		while (node1 != mid.next) {
+			
+			Node aftNode1 = node1.next;
+			Node aftNode2 = node2.next;
+			if (node1.data >= node2.data) {
+
+				if (preNode1 == null) {
+					node2.next = node1;
+					preNode2.next = aftNode2;
+
+					head = node2;
+
+				} else {
+					preNode1.next = node2;
+					node2.next = node1;
+					preNode2.next = aftNode2;
+
+				}
+
+			} else {
+				// if (preNode1 == null) {
+				node1.next = node2;
+				node2.next = aftNode1;
+				preNode2.next = aftNode1.next;
+
+				// }
+			}
+
+			preNode1 = node1;
+			node1 = node1.next;
+
+			node2 = preNode2.next;
+			print();
+		}
 
 	}
 
@@ -101,19 +122,19 @@ public class MergesortLinkedList {
 	public static void main(String[] args) {
 
 		MergesortLinkedList ls = new MergesortLinkedList();
-		ls.add(13);
 		ls.add(11);
-		ls.add(9);
+		ls.add(13);
 		ls.add(7);
-		
-		ls.add(14);
+		ls.add(9);
+
 		ls.add(12);
-		ls.add(10);
+		ls.add(14);
 		ls.add(8);
+		ls.add(10);
 		ls.print();
 		ls.sort();
 		ls.print();
-	//	System.out.println(ls.getMid(ls.head ,null).data);
+		// System.out.println(ls.getMid(ls.head ,null).data);
 
 	}
 
