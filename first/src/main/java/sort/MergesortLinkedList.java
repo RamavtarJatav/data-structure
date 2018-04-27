@@ -39,69 +39,95 @@ public class MergesortLinkedList {
 	}
 
 	void sort() {
-		sortUtil(null, head, null);
+
+		head = sortUtil(head);
 	}
 
-	void sortUtil(Node pre, Node start, Node end) {
+	Node sortUtil(Node start) {
 
-		Node mid = getMid(start, end);
-		if (start != end) {
-			sortUtil(pre, start, mid);
-			sortUtil(mid, mid.next, end);
-			merge(pre, start, mid, end);
-		}
+		if (start == null || start.next == null)
+			return start;
+
+		Node mid = getMid(start);
+		Node midNext = mid.next;
+		mid.next = null;
+		Node left = sortUtil(start);
+		Node right = sortUtil(midNext);
+		print();
+		return merge(left, right);
+		
 	}
 
-	void merge(Node pre, Node start, Node mid, Node end) {
-		Node preNode1 = pre;
-		Node node1 = start;
+	Node merge(Node left, Node right) {
+		// Node preNode1 =null;
+		Node node1 = left;
 
-		Node preNode2 = mid;
-		Node node2 = mid.next;
+		// Node preNode2 = null;
+		Node node2 = right;
 
-		while (node1 != mid.next) {
-			
-			Node aftNode1 = node1.next;
-			Node aftNode2 = node2.next;
+		Node result = null;
+		Node last = null;
+
+		while (node1 != null && node2 != null) {
+
 			if (node1.data >= node2.data) {
-
-				if (preNode1 == null) {
-					node2.next = node1;
-					preNode2.next = aftNode2;
-
-					head = node2;
-
-				} else {
-					preNode1.next = node2;
-					node2.next = node1;
-					preNode2.next = aftNode2;
-
-				}
-
-			} else {
-				// if (preNode1 == null) {
-				node1.next = node2;
-				node2.next = aftNode1;
-				preNode2.next = aftNode1.next;
-
-				// }
+                if(result == null) {
+                	result = node2;
+                	last = result;
+                	
+                }else {
+                	last.next = node2;
+                	last = last.next;
+                }
+                node2 = node2.next;
+			}else {
+				if(result == null) {
+                	result = node1;
+                	last = result;
+                }else {
+                	last.next = node1;
+                	last = last.next;
+                }
+                node1 = node1.next;
 			}
-
-			preNode1 = node1;
-			node1 = node1.next;
-
-			node2 = preNode2.next;
-			print();
+			
+			
 		}
+		
+		
+		while(node1 != null) {
+			if(result == null) {
+            	result = node1;
+            	last = result;
+            }else {
+            	last.next = node1;
+            	last = last.next;
+            }
+			node1 = node1.next;
+		}
+		
+		while(node2 != null) {
+			if(last == null) {
+            	last = node2;
+            	result = last;
+            }else {
+            	last.next = node2;
+            	last = last.next;
+            }
+            node2 = node2.next;
+			
+		}
+		
+		return result;
 
 	}
 
-	Node getMid(Node start, Node end) {
+	Node getMid(Node start) {
 		if (start == null)
 			return null;
 		Node p1 = start;
 		Node p2 = null;
-		while (p1 != end) {
+		while (p1 != null) {
 
 			if (p2 == null) {
 				p2 = start;
@@ -109,7 +135,7 @@ public class MergesortLinkedList {
 				p2 = p2.next;
 			}
 
-			if (p1.next != end) {
+			if (p1.next != null) {
 				p1 = p1.next.next;
 			} else {
 				p1 = p1.next;
