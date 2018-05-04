@@ -35,19 +35,30 @@ public class Reversek {
 	}
 
 	void reversek(Node node, int k) {
-		Node nodepre = null;
-		Node nodeaft = null;
+		//Node nodepre = null;
+		//Node nodeaft = null;
 
 		Node nodei = node;
+		
+		//nodeaft = null;
+		
 		int count = 0;
-		int count1 = 0;
+	
+		int i = 0;
+		int j = 0;
 		// while(count < k && nodei.next != null) {
-		while (count1 < k) {
-			while (count < k-count1) {
-
-				Node node1 = nodei;
-				Node node2 = node1.next;
-				nodeaft = node2.next;
+		while (i < k) {
+			Node nodepre = null;
+			Node nodeaft = null;
+			Node node1 = null;;
+			Node node2 = null;
+			while (j < k-i-1) {
+				
+				nodepre = node2;
+				node1 = nodei;
+				node2 = nodei.next;
+				nodeaft =node2.next;
+				
 
 				if (nodepre == null) {
 					node2.next = node1;
@@ -59,13 +70,17 @@ public class Reversek {
 					node1.next = nodeaft;
 				}
 
-				count++;
+				j++;
+				print();
 
-				nodepre = node2;
+				
 
 			}
-			count1++;
+			i++;
+			j = 0;
 			nodei = head;
+			
+		
 			
 		}
 
