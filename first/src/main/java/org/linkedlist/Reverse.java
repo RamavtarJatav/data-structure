@@ -67,7 +67,7 @@ public class Reverse {
 	}
 	public static void main(String[] args) {
 		Reverse list = new Reverse();
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 8; i++)
 			list.add(i);
 		list.print();
 		list.reverse();
