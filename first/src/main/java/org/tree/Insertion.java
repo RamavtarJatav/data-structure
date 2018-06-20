@@ -60,9 +60,40 @@ public class Insertion {
 			}
 		}
 	}
-    void remove() {
+    void remove(int data) {
+    	if(root == null)
+    		return;
+    	
+    	Node loc = findNode(root , data);
+    	if (loc != null) {
+    		System.out.println( "found"  +loc.data);
+    	}
+    	
     	
     }
+    
+    Node findNode(Node node , int data ) {
+    	Node temp = null;
+    	if(node.data == data) {
+    		return  node ;
+    	}else {
+    		if (node.left != null) {
+    		     temp = findNode(node.left , data); 
+    		}
+    		
+    		if(node.right != null) {
+    			if (temp == null) {
+    			return findNode(node.right , data);
+    			}else {
+    				return temp;
+    			}
+    		}
+    		
+    	}
+		return null;
+    	
+    }
+    
 	public static void main(String[] args) {
 		Insertion bt = new Insertion();
 		bt.root = new Node(1);
@@ -75,6 +106,8 @@ public class Insertion {
 		bt.BFSTraversal();
 		bt.add(7);
 		bt.BFSTraversal();
+		bt.remove(4);
+		
 		
 
 	}
