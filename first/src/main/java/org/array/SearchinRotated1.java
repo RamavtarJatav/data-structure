@@ -1,6 +1,6 @@
 package org.array;
 
-public class SearchinRotated {
+public class SearchinRotated1 {
 	static void rotateleft(int[] a, int d) {
 		reverse(a, 0, d - 1);
 		reverse(a, d, a.length - 1);
@@ -40,10 +40,15 @@ public class SearchinRotated {
 			if(l < h) {
 				m = ((l + h) / 2);
 			}else {
+
 				m = ((l+ h+a.length)/2)-a.length;
 				if( m < 0) {
 					m = m+a.length;
 				}
+
+				m = ((l+h-16+9)/2);
+				//m = m - a.length-1;
+
 			}
 	
 			
@@ -74,7 +79,7 @@ public class SearchinRotated {
 	public static void main(String[] args) {
 		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11 ,12,13 ,14 ,15 ,16 ,17,18 ,19,20 };
 		print(a);
-		rotateleft(a, 3);
+		rotateleft(a, 1);
 		print(a);
 		System.out.println(searchPivot(a));
 		System.out.println(search(a, 10));
