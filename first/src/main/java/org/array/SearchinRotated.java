@@ -40,8 +40,10 @@ public class SearchinRotated {
 			if(l < h) {
 				m = ((l + h) / 2);
 			}else {
-				m = ((l+h)/2)+l;
-				m = m - a.length;
+				m = ((l+ h+a.length)/2)-a.length;
+				if( m < 0) {
+					m = m+a.length;
+				}
 			}
 	
 			
@@ -55,7 +57,9 @@ public class SearchinRotated {
 			}
 
 		}
-
+        if(data ==  a[l] || data == a[h]) {
+        	return true;
+        }
 		return false;
 
 	}
@@ -68,12 +72,12 @@ public class SearchinRotated {
 	}
 
 	public static void main(String[] args) {
-		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11 ,12,13 ,14 ,15 ,16 ,17,18 ,19,20 };
 		print(a);
 		rotateleft(a, 3);
 		print(a);
 		System.out.println(searchPivot(a));
-		search(a, 9);
+		System.out.println(search(a, 10));
 
 	}
 

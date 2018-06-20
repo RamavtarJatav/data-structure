@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Calendar;
+import java.util.Scanner;
 
 public class Test1 {
 	static  class Node {
@@ -13,11 +15,18 @@ public class Test1 {
 		
 	}
 	public static void main(String[] args) {
-		 Node n = null;
-		 Node n1 = new Node(1);
-		 while(n1.next != n) {
-			 System.out.println("a");
-		 }
+		   Scanner scan = new Scanner(System.in);
+		   Calendar c = Calendar.getInstance();
+		
+		   c.set(2015, 5, 8);
+		   System.out.println(c.get(Calendar.DAY_OF_WEEK));
+		 
+		  
+//		 Node n = null;
+//		 Node n1 = new Node(1);
+//		 while(n1.next != n) {
+//			 System.out.println("a");
+//		 }
 	}
 
 }
