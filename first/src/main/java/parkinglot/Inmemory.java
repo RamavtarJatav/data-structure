@@ -1,18 +1,21 @@
 package parkinglot;
 
-import java.util.HashSet;
+import java.util.HashMap;
+
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.List;
+import java.util.Map;
+
+
 
 public class Inmemory  implements  Operation {
-	private Queue<Integer> e = new LinkedList<Integer>();
-	private Set<Integer> f = new HashSet<Integer>();
+	private List<Integer> e = new LinkedList<Integer>();
+	private Map<Integer, Customer> f = new HashMap<Integer,Customer>();
 	int size ;
 	
 
 	public int  getLocation() {
-		int loc = e.remove();
+		int loc = e.remove(0);
 		return loc;
 		
 		
