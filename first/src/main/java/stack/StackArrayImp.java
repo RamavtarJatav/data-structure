@@ -33,6 +33,7 @@ public class StackArrayImp {
     		 throw new Exception("Stack is empty");
     	  }
 		return array[index--];
+		
       }
       
       void print() {

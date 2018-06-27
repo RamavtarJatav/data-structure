@@ -1,6 +1,6 @@
 package sort;
 
-import thread.Node;
+
 
 public class QuickSortOnLinkedList {
 	Node head;

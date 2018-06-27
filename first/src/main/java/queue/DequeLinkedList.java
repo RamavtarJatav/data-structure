@@ -1,6 +1,6 @@
 package queue;
 
-public class DequeLnk {
+public class DequeLinkedList {
 	static class Node {
 		int data;
 		Node next;
@@ -84,7 +84,7 @@ public class DequeLnk {
 	}
 
 	public static void main(String[] args) {
-		DequeLnk deque = new DequeLnk();
+		DequeLinkedList deque = new DequeLinkedList();
 		for (int i = 0; i <= 10; i++)
 			deque.addRear(i);
 
