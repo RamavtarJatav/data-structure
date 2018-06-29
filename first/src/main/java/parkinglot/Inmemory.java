@@ -16,6 +16,8 @@ public class Inmemory  implements  Operation {
 
 	public int  getLocation() {
 		int loc = e.remove(0);
+		
+		f.put(loc, new Customer(null, null, null));
 		return loc;
 		
 		
@@ -27,6 +29,8 @@ public class Inmemory  implements  Operation {
 		
 		
 	}
+	
+
 
 	
 	
