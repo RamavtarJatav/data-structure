@@ -9,21 +9,21 @@ public class ElevatorServer {
 	
 	
 	
-	Lock lock;
-	
-	private CommonStorage cs;
-	private Connector connector
-	private List<Elevator> el ;
-	
-	public void  setCommonStorage( CommonStorage cs ) {
+//	Lock lock;
+//	
+//	private CommonStorage cs;
+//	private Connector connector
+//	private List<Elevator> el ;
+//	
+//	public void  setCommonStorage( CommonStorage cs ) {
+//		
+//    }
+//	
+//	
+//	
+//	private addElevator() {
 		
-    }
-	
-	
-	
-	private addElevator() {
-		
-	}
+//	}
 	
 	
 	

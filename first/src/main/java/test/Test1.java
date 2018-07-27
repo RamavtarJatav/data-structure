@@ -20,6 +20,7 @@ public class Test1 {
 		
 		   c.set(2015, 5, 8);
 		   System.out.println(c.get(Calendar.DAY_OF_WEEK));
+		   
 		 
 		  
 //		 Node n = null;
