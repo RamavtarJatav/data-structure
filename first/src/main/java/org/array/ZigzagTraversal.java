@@ -25,8 +25,7 @@ public class ZigzagTraversal {
 				System.out.print(a[i][j] + " ");
 				i--;
 				j++;
-			}
-		    
+			} 
 			c++;
 			i = r;
 			j = 0;
