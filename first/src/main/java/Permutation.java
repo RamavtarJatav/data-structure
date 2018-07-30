@@ -50,7 +50,7 @@ public class Permutation {
 	}
 
 	public static void main(String[] args) {
-		String data = "SHIVA";
+		String data = "SHIV";
 		Set<String> setSt = permutation(data);
 		int i = 0 ;
 		for(String s: setSt) {

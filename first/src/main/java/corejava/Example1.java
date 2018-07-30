@@ -15,8 +15,7 @@ public class Example1 {
 	}
    
 	 public static void main(String[] args) {
-		 short i = 0;
-		 print(i);
+
 		
 	}
 

@@ -20,7 +20,7 @@ public class AllCombination {
 	}
 
 	public static void main(String[] args) {
-		String data = "DDDA";
+		String data = "ABCDE";
 		permutation(data);
 	}
 

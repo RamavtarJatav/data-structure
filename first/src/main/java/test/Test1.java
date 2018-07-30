@@ -21,9 +21,7 @@ public class Test1 {
 		
 		   c.set(2015, 5, 8);
 		   System.out.println(c.get(Calendar.DAY_OF_WEEK));
-<<<<<<< Updated upstream
-		   
-=======
+
 		   int y = 9;
 		  // x = ++(++y);
 		   System.out.println(new Test1());
@@ -34,7 +32,7 @@ public class Test1 {
 		   }catch(Exception e) {
 			   
 		   }
->>>>>>> Stashed changes
+
 		 
 		  
 //		 Node n = null;
