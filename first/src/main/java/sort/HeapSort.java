@@ -65,7 +65,7 @@ public class HeapSort{
 	}
 
 	public static void main(String[] args) {
-		int[] a = { 10, 9, 8, 7, 6, 5, 4, 3 };
+		int[] a = { 10, 15, 8, 7, 2, 5, 1, 18 };
 		printArray(a);
 		//maxHeap(a);
 		//heapify(a, a.length-1);

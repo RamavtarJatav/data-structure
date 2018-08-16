@@ -34,23 +34,35 @@ public class ArrayQuestion {
 				}
 
 			}
-       
+
 		print(a);
 		int[] b = new int[n];
-		int d = (n+1) / 2;
+		int d = (n + 1) / 2;
 		int m = d;
 		for (int i = 1; i < n; i += 2) {
 			b[i] = a[m++];
 			print(b);
 		}
-		int l = d-1;
+		int l = d - 1;
 		for (int i = 0; i < n; i += 2) {
 			b[i] = a[l--];
 		}
-        
-		//a = new int[n];
+
+		// a = new int[n];
 		print(b);
 
+	}
+
+	static void rearrangePosNegAlt(int[] a) {
+		int p =-1;
+		int n =-1;
+		int i = 0;
+		int l = a.length;
+		while (i < l) {
+           if(a[i] >= 0) {
+        	   i++;
+           }
+		}
 	}
 
 	public static void main(String[] args) {
@@ -59,9 +71,16 @@ public class ArrayQuestion {
 		// arrayai(a);
 		// print(a);
 		// arrayai(a);
+		/////// **************
+		
 		print(a);
 		evenodd(a);
 		print(a);
+		// *********************
+				
+		
+		
+		
 
 	}
 

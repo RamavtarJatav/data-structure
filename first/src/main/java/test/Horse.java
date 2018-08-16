@@ -7,7 +7,7 @@ public class Horse extends Animal {
 	
 	public static void main(String[] args) {
 		Animal an = new Horse();
-		an.getAnimal();
+		//an.getAnimal();
 	}
 
 }
