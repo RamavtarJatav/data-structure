@@ -39,11 +39,31 @@ public class QuickSort {
 		}
 		System.out.println();
 	}
+	
+	static int removeDuplicate(int[] a){
+	       int n = a.length;
+	       int delc = 0;
+	       for(int i = 0 ; i < n-delc ; i++){
+	          for(int j = i+1  ; j < n  ;j++){
+	             if(a[i] == a[j]){
+	                 for(int k = j ; k < n-1-delc ; k++){
+	                     a[k] = a[k+1];
+	                 }
+	                 delc++;
+	             }
+	         }
+	    }
+	    
+	    return delc;
+	    
+	}
 
 	public static void main(String[] args) {
-		int[] a = { 21,10,15,20, 8 ,9,11};
+		int[] a = { 8,11,21,10,15,20, 8, 15,9,11};
 		print(a);
 		quickSort(a);
+		System.out.println(removeDuplicate(a));
+		
 		print(a);
 
 	}
