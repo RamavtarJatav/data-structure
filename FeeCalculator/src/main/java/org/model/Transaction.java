@@ -51,6 +51,7 @@ public class Transaction  {
 	public String getPriorityFlag() {
 		return priorityFlag;
 	}
+	
 
 	public static class Builder {
 
