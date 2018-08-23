@@ -28,6 +28,7 @@ public class SubSeqMaxIncreSum {
 	public static void main(String[] args) {
 		int[] a = { 1, 101, 2, 3, 100, 4, 5 };
 		System.out.println(sebSeqMaxIncreasingSum(a));
+		StringBuilder sb;
 
 	}
 
