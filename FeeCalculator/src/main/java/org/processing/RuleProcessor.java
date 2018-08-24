@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
@@ -12,11 +15,12 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+import org.compartor.ReportCamparator;
 import org.model.ProcessingFee;
 import org.model.Transaction;
 
-public class RuleProcessor implements Processor{
-	List<ProcessingFee> report = new ArrayList<ProcessingFee>();
+public class RuleProcessor implements Processor {
+	Map<ProcessingFee, Double> report = new TreeMap<ProcessingFee, Double>(new ReportCamparator());
 
 	@Override
 	public void process(Map<Long, List<Transaction>> transactionListbyDate) {
@@ -24,49 +28,39 @@ public class RuleProcessor implements Processor{
 			long time = entrySet.getKey();
 			List<Transaction> trlst = entrySet.getValue();
 			int n = trlst.size();
-			Transaction tr = trlst.get(0);
-			ProcessingFee pr = new ProcessingFee(tr.getClientId(), tr.getTransactionType(), tr.getDate(),
-					tr.getPriorityFlag());
 
-			if (tr.getPriorityFlag().equals("Y")) {
-				pr.setProcessingFee(500);
-			} else if (tr.getPriorityFlag().equals("N")) {
-				if (tr.getTransactionType().equals("DEPOSIT")) {
-					pr.setProcessingFee(50);
-				} else if (tr.getTransactionType() == "WITHDRAW") {
-					pr.setProcessingFee(100);
-				} else if (tr.getTransactionType() == "SELL") {
-					pr.setProcessingFee(100);
-				} else if (tr.getTransactionType() == "BUY") {
-					pr.setProcessingFee(50);
-				}
-			} else {
-				// invalid transaction
-			}
-
-			for (int i = 1; i < n; i++) {
-				tr = trlst.get(i);
-				pr = new ProcessingFee(tr.getClientId(), tr.getTransactionType(), tr.getDate(),
+			for (int i = 0; i < n; i++) {
+				Transaction tr = trlst.get(i);
+				ProcessingFee pr = new ProcessingFee(tr.getClientId(), tr.getTransactionType(), tr.getDate(),
 						tr.getPriorityFlag());
+
 				boolean intraday = false;
 
 				for (int j = i - 1; j >= 0; j--) {
 					Transaction trpre = trlst.get(j);
-					if (tr.getTransactionType() == "BUY" && trpre.getTransactionType() == "SELL"
+					if (tr.getTransactionType().equals("BUY") && trpre.getTransactionType().equals("SELL")
 							&& (tr.getClientId().equals(trpre.getClientId()))
 							&& tr.getSecurityId().equals(trpre.getSecurityId())) {
 						intraday = true;
 						break;
-					} else if (tr.getTransactionType() == "SELL" && trpre.getTransactionType() == "BUY"
-							&& (tr.getClientId().equals(trpre.getClientId()))
-							&& tr.getSecurityId().equals(trpre.getSecurityId())) {
+					} else if (tr.getTransactionType().equals("SELL") && trpre.getTransactionType().equals("BUY")
+							&& (tr.getClientId().equals(trpre.getClientId())
+									&& tr.getSecurityId().equals(trpre.getSecurityId()))) {
 						intraday = true;
 						break;
 					}
 
 				}
 				if (intraday) {
-					pr.setProcessingFee(10);
+					if (report.containsKey(pr)) {
+						double newFee = 10 + report.get(pr);
+						pr.setProcessingFee(newFee);
+						report.put(pr, newFee);
+					} else {
+						pr.setProcessingFee(10);
+						report.put(pr, 10d);
+					}
+
 					intraday = false;
 					continue;
 				}
@@ -76,28 +70,29 @@ public class RuleProcessor implements Processor{
 				} else if (tr.getPriorityFlag().equals("N")) {
 					if (tr.getTransactionType().equals("DEPOSIT")) {
 						pr.setProcessingFee(50);
-					} else if (tr.getTransactionType() == "WITHDRAW") {
+					} else if (tr.getTransactionType().equals("WITHDRAW")) {
 						pr.setProcessingFee(100);
-					} else if (tr.getTransactionType() == "SELL") {
+					} else if (tr.getTransactionType().equals("SELL")) {
 						pr.setProcessingFee(100);
-					} else if (tr.getTransactionType() == "BUY") {
+					} else if (tr.getTransactionType().equals("BUY")) {
 						pr.setProcessingFee(50);
 					}
 				} else {
 					// invalid transaction
 				}
 
+				report.put(pr, pr.getProcessingFee());
+
 			}
 
 		}
-		
-		
+
 	}
 
 	@Override
-	public List<ProcessingFee> getProcessedData() {
+	public Set<ProcessingFee> getProcessedData() {
 		// TODO Auto-generated method stub
-		return report;
+		return report.keySet();
 	}
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.configuration.Constant;
+import org.configuration.CONSTANT;
 import org.model.Transaction;
 
 public class CSVFileReader implements Reader {
@@ -26,10 +26,10 @@ public class CSVFileReader implements Reader {
 		String line = "";
 		String cvsSplitBy = ",";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(Constant.INPUT_FILE_LOCATION));
+			BufferedReader br = new BufferedReader(new FileReader(CONSTANT.INPUT_FILE_DIRECTORY + CONSTANT.INPUT_FILE_NAME));
 			String header = br.readLine();
 			while ((line = br.readLine()) != null) {
-				String[] data = header.split(",");
+				String[] data = line.split(",");
 				String pattern = "dd/MM/yyyy";
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 

@@ -6,26 +6,28 @@ import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
-import org.configuration.Constant;
+import org.configuration.CONSTANT;
 import org.model.ProcessingFee;
 
 public class CSVFileWriter implements OutputFileWriter {
 
 	@Override
-	public void write(List<ProcessingFee> feeproclist) {
+	public void write(Set<ProcessingFee> feeproclist) {
 		String COMMA_DELIMITER = ",";
 
 		String NEW_LINE_SEPARATOR = "\n";
 		FileWriter fileWriter = null;
 		try {
-			fileWriter = new FileWriter(Constant.OUTPUT_FILE_LOCATION);
+			fileWriter = new FileWriter(CONSTANT.OUTPUT_FILE_DIRECTORY);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+        
+		//feeproclist.sort(new ReportCamparator());
+		
 		for (ProcessingFee processingFee : feeproclist) {
 
 			try {

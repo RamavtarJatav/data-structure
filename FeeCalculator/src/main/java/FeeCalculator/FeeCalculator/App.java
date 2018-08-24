@@ -1,9 +1,10 @@
 package FeeCalculator.FeeCalculator;
 
-
 import java.util.List;
 import java.util.Map;
-import org.configuration.Constant;
+import java.util.Set;
+
+import org.configuration.CONSTANT;
 import org.filereader.CSVFileReader;
 import org.filereader.Reader;
 import org.filewriter.CSVFileWriter;
@@ -21,7 +22,7 @@ public class App {
 
 	public static void main(String[] args) {
 
-		String fileType = Constant.INPUT_FILE_TYPE;
+		String fileType = CONSTANT.INPUT_FILE_TYPE;
 		Map<Long/* date */ , List<Transaction>> transactionListbyDate = null;
 		switch (fileType) {
 		case "CSV":
@@ -31,29 +32,26 @@ public class App {
 			break;
 
 		case "XML":
-
+		case "EXCEL":
 		case "PIPEDELIMIED":
-
 		default:
 
 		}
 
 		Processor processor = new RuleProcessor();
 		processor.process(transactionListbyDate);
-		List<ProcessingFee> feeprocessingList = processor.getProcessedData();
+		Set<ProcessingFee> feeprocessingList = processor.getProcessedData();
 
-		switch (fileType) {
+		switch (CONSTANT.OUTPUT_FILE_TYPE) {
 		case "CSV":
 			OutputFileWriter writer = new CSVFileWriter();
 			writer.write(feeprocessingList);
 			break;
 
 		case "XML":
-
+		case "EXCEL":
 		case "PIPEDELIMIED":
-
 		default:
-
 		}
 
 	}

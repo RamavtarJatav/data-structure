@@ -1,9 +1,9 @@
 package org.filewriter;
 
-import java.util.List;
+import java.util.Set;
 
 import org.model.ProcessingFee;
 
 public interface OutputFileWriter {
-    void write(List<ProcessingFee> feeproclist);
+    void write(final Set<ProcessingFee> feeproclist);
 }
