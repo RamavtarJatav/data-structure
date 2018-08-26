@@ -7,8 +7,6 @@ import java.util.TreeMap;
 
 import org.compartor.ReportCamparator;
 import org.configuration.CONSTANT;
-import org.configuration.Configuration;
-import org.filereader.CSVFileReader;
 import org.model.ProcessingFee;
 import org.model.Transaction;
 import org.slf4j.Logger;
@@ -19,9 +17,6 @@ public class RuleProcessor implements Processor {
 
 	private Map<ProcessingFee, Double> report = new TreeMap<ProcessingFee, Double>(new ReportCamparator());
    
-	private Configuration config = Configuration.getStandard();
-	
-	
 	public RuleProcessor() {
 	
 	}
@@ -30,7 +25,6 @@ public class RuleProcessor implements Processor {
 		LOG.debug("{}", new Object[] { " processing input data start" });
 		try {
 			for (Map.Entry<Long, List<Transaction>> entrySet : transactionListbyDate.entrySet()) {
-				long time = entrySet.getKey();
 				List<Transaction> trlst = entrySet.getValue();
 				int n = trlst.size();
 
