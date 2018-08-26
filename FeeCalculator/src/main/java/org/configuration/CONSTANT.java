@@ -36,32 +36,18 @@ public class CONSTANT {
 	public static final String SELL = "SELL";
 	public static final String HIGH_PRIORITY = "Y";
 	public static final String NORMAL_PRIORITY = "N";
-	
+
 	// various types of file type
-	
+
 	public static final String CSV = "CSV";
 	public static final String XML = "XML";
 	public static final String EXCEL = "EXCEL";
 	public static final String PIPEDELIMITED = "PIPEDELIMITED";
-	
-	
-	
 
-	//
-
-	//
-
+	
 	static {
-		Properties prop = new Properties();
-		InputStream input = null;
-
-		try {
-			input = new FileInputStream("application.properties");
-			prop.load(input);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Configuration config = Configuration.getStandard();
+		Properties prop = config.getProperties();
 		INPUT_FILE_DIRECTORY = prop.getProperty("INPUT_FILE_DIRECTORY");
 		OUTPUT_FILE_DIRECTORY = prop.getProperty("OUTPUT_FILE_DIRECTORY");
 		INPUT_FILE_NAME = prop.getProperty("INPUT_FILE_NAME");

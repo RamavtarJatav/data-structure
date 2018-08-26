@@ -2,15 +2,15 @@ package org.model;
 
 public class ProcessingFee {
 	private String clientId;
-	private String securityId;
+	//private String securityId;
 	private String transactionType;
 	private long transactionDate;
 	private String priority;
 	//private double fee;
 
-	public ProcessingFee(String clientId,String securityId, String transactionType, long transactionDate, String priority) {
+	public ProcessingFee(String clientId, /*String securityId  ,*/ String transactionType, long transactionDate, String priority) {
 		this.clientId = clientId;
-		this.securityId = securityId;
+		//this.securityId = securityId;
 		this.transactionType = transactionType;
 		this.transactionDate = transactionDate;
 		this.priority = priority;
@@ -29,9 +29,9 @@ public class ProcessingFee {
 		return clientId;
 	}
     
-	public String getSecurityId() {
-		return securityId;
-	}
+//	public String getSecurityId() {
+//		return securityId;
+//	}
 	
 	public String getTransactionType() {
 		return transactionType;

@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 public class CSVFileReader implements Reader {
 	private static final Logger LOG = LoggerFactory.getLogger(CSVFileReader.class);
-
+	
 	private String INPUT_FILE = CONSTANT.INPUT_FILE_DIRECTORY + CONSTANT.INPUT_FILE_NAME;
 	private String INPUT_FILE_DATEFORMAT = CONSTANT.INPUT_FILE_DATE_FORMAT;
 	private String csvSplitBy = ",";

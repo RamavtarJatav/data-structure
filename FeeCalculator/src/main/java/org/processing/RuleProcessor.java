@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import org.compartor.ReportCamparator;
 import org.configuration.CONSTANT;
+import org.configuration.Configuration;
 import org.filereader.CSVFileReader;
 import org.model.ProcessingFee;
 import org.model.Transaction;
@@ -17,7 +18,13 @@ public class RuleProcessor implements Processor {
 	private static final Logger LOG = LoggerFactory.getLogger(RuleProcessor.class);
 
 	private Map<ProcessingFee, Double> report = new TreeMap<ProcessingFee, Double>(new ReportCamparator());
-
+   
+	private Configuration config = Configuration.getStandard();
+	
+	
+	public RuleProcessor() {
+	
+	}
 	@Override
 	public void process(Map<Long, List<Transaction>> transactionListbyDate) {
 		LOG.debug("{}", new Object[] { " processing input data start" });
@@ -29,7 +36,7 @@ public class RuleProcessor implements Processor {
 
 				for (int i = 0; i < n; i++) {
 					Transaction tr = trlst.get(i);
-					ProcessingFee pr = new ProcessingFee(tr.getClientId(), tr.getSecurityId(), tr.getTransactionType(),
+					ProcessingFee pr = new ProcessingFee(tr.getClientId(), tr.getTransactionType(),
 							tr.getDate(), tr.getPriorityFlag());
 
 					boolean intraday = false;
@@ -83,7 +90,7 @@ public class RuleProcessor implements Processor {
 	void intraDayAddFee(ProcessingFee pr) {
 		LOG.debug("{}", new Object[] { "Intra Day add fee Transaction processing start " });
 		try {
-			ProcessingFee prprev = new ProcessingFee(pr.getClientId(), pr.getSecurityId(), "BUY",
+			ProcessingFee prprev = new ProcessingFee(pr.getClientId(), "BUY",
 					pr.getTransactionDate(), pr.getPriority());
 			report.put(prprev, report.get(prprev) - CONSTANT.BUY_FEE + CONSTANT.INTRADAY_FEE);
 			Double prfee = report.get(pr);

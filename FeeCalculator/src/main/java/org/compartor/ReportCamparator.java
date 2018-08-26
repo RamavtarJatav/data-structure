@@ -23,7 +23,7 @@ public class ReportCamparator implements Comparator<ProcessingFee> {
 				} else if (p1.getTransactionDate() < p2.getTransactionDate()) {
 					return -1;
 				} else {
-					return 0;
+					return p1.getPriority().compareTo(p2.getPriority());
 				}
 			}
 		}

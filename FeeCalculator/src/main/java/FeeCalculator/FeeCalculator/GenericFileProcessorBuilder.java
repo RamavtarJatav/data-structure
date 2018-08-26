@@ -1,6 +1,7 @@
 package FeeCalculator.FeeCalculator;
 
 import org.configuration.CONSTANT;
+import org.configuration.Configuration;
 import org.filereader.CSVFileReader;
 import org.filereader.Reader;
 import org.filewriter.CSVFileWriter;
@@ -13,16 +14,15 @@ import org.slf4j.LoggerFactory;
 public class GenericFileProcessorBuilder {
 	private static final Logger LOG = LoggerFactory.getLogger(GenericFileProcessorBuilder.class);
 
-	private String INPUT_FILE_TYPE = CONSTANT.INPUT_FILE_TYPE;
-	private String OUTPUT_FILE_TYPE = CONSTANT.OUTPUT_FILE_TYPE;
 	private Reader reader;
 	private Processor processor;
 	private OutputFileWriter outputFileWriter;
 
+	
 	public GenericFileProcessor build() {
 		LOG.debug("{}", new Object[] { "start of building of GenericFileProcessor " });
 		try {
-			switch (INPUT_FILE_TYPE) {
+			switch (CONSTANT.INPUT_FILE_TYPE) {
 			case CONSTANT.CSV:
 				this.reader = new CSVFileReader();
 				break;
@@ -35,7 +35,7 @@ public class GenericFileProcessorBuilder {
 
 			this.processor = new RuleProcessor();
 
-			switch (OUTPUT_FILE_TYPE) {
+			switch (CONSTANT.OUTPUT_FILE_TYPE) {
 			case CONSTANT.CSV:
 				outputFileWriter = new CSVFileWriter();
 				break;
