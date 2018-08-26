@@ -12,6 +12,19 @@ import org.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+   Processing Rules:
+   1. Intraday transactions: Intra-day transactions are the ones where security (like IBM Equity) is bought
+      & sold on the same day. Intra-day transactions will have two transactions having same Client Id,
+      Security Id, & Transaction Date but opposite Transaction Type i.e. one transaction would be ‘Sell’ & 
+      other would be ‘Buy’. Each ‘intra-day transaction should be charged $10 for both the Buy & Sell legs.
+   2. Normal transactions: A nominal fee is charged to process each transaction. Fee calculation is based on
+      following rules:$500 for a transaction with high priority (denoted by the priority field in the transaction).
+      $100 for a transaction with normal priority and Transaction Type is Sell and Withdraw. $50 for a transaction
+       with normal priority and Transaction Type Code is buy and sell;.
+  
+ * */
+
 public class RuleProcessor implements Processor {
 	private static final Logger LOG = LoggerFactory.getLogger(RuleProcessor.class);
 

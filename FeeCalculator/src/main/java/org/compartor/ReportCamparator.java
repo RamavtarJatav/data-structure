@@ -6,6 +6,11 @@ import org.model.ProcessingFee;
 
 public class ReportCamparator implements Comparator<ProcessingFee> {
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	 * sorting comparator based on clientId , transactionType , transaction date ,priority
+	 */
 	public int compare(ProcessingFee p1, ProcessingFee p2) {
 		// TODO Auto-generated method stub
 

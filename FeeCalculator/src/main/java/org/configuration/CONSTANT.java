@@ -1,10 +1,6 @@
 package org.configuration;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,12 +17,12 @@ public class CONSTANT {
 
 	// Fee for various Transaction
 
-	public static float BUY_FEE = 50f;
-	public static float SELL_FEE = 100f;
-	public static float DEPOSIT_FEE = 50f;
-	public static float WITHDRAW_FEE = 100f;
-	public static float INTRADAY_FEE = 10f;
-	public static float HIGH_PRIORITY_FEE = 500f;
+	public static float BUY_FEE = 50;
+	public static float SELL_FEE = 100;
+	public static float DEPOSIT_FEE = 50;
+	public static float WITHDRAW_FEE = 100;
+	public static float INTRADAY_FEE = 10;
+	public static float HIGH_PRIORITY_FEE = 500;
 
 	// Various kind of Transaction
 
@@ -44,24 +40,29 @@ public class CONSTANT {
 	public static final String EXCEL = "EXCEL";
 	public static final String PIPEDELIMITED = "PIPEDELIMITED";
 
-	
 	static {
-		Configuration config = Configuration.getStandard();
-		Properties prop = config.getProperties();
-		INPUT_FILE_DIRECTORY = prop.getProperty("INPUT_FILE_DIRECTORY");
-		OUTPUT_FILE_DIRECTORY = prop.getProperty("OUTPUT_FILE_DIRECTORY");
-		INPUT_FILE_NAME = prop.getProperty("INPUT_FILE_NAME");
-		OUTPUT_FILE_NAME = prop.getProperty("OUTPUT_FILE_NAME");
-		INPUT_FILE_TYPE = prop.getProperty("INPUT_FILE_TYPE");
-		OUTPUT_FILE_TYPE = prop.getProperty("OUTPUT_FILE_TYPE");
-		INPUT_FILE_DATE_FORMAT = prop.getProperty("INPUT_FILE_DATE_FORMAT");
+		try {
+			Configuration config = Configuration.getStandard();
+			Properties prop = config.getProperties();
+			INPUT_FILE_DIRECTORY = prop.getProperty("INPUT_FILE_DIRECTORY");
+			OUTPUT_FILE_DIRECTORY = prop.getProperty("OUTPUT_FILE_DIRECTORY");
+			INPUT_FILE_NAME = prop.getProperty("INPUT_FILE_NAME");
+			OUTPUT_FILE_NAME = prop.getProperty("OUTPUT_FILE_NAME");
+			INPUT_FILE_TYPE = prop.getProperty("INPUT_FILE_TYPE");
+			OUTPUT_FILE_TYPE = prop.getProperty("OUTPUT_FILE_TYPE");
+			INPUT_FILE_DATE_FORMAT = prop.getProperty("INPUT_FILE_DATE_FORMAT");
 
-		BUY_FEE = Float.parseFloat(prop.getProperty("BUY_FEE"));
-		SELL_FEE = Float.parseFloat(prop.getProperty("SELL_FEE"));
-		DEPOSIT_FEE = Float.parseFloat(prop.getProperty("DEPOSIT_FEE"));
-		WITHDRAW_FEE = Float.parseFloat(prop.getProperty("WITHDRAW_FEE"));
-		INTRADAY_FEE = Float.parseFloat(prop.getProperty("INTRADAY_FEE"));
-		HIGH_PRIORITY_FEE = Float.parseFloat(prop.getProperty("HIGH_PRIORITY_FEE"));
+			BUY_FEE = Float.parseFloat(prop.getProperty("BUY_FEE"));
+			SELL_FEE = Float.parseFloat(prop.getProperty("SELL_FEE"));
+			DEPOSIT_FEE = Float.parseFloat(prop.getProperty("DEPOSIT_FEE"));
+			WITHDRAW_FEE = Float.parseFloat(prop.getProperty("WITHDRAW_FEE"));
+			INTRADAY_FEE = Float.parseFloat(prop.getProperty("INTRADAY_FEE"));
+			HIGH_PRIORITY_FEE = Float.parseFloat(prop.getProperty("HIGH_PRIORITY_FEE"));
+		} catch (Exception e) {
+			LOG.error("{}",
+					new Object[] { " Exception in setting  Constant data ", e.getMessage() , e });
+
+		}
 
 	}
 

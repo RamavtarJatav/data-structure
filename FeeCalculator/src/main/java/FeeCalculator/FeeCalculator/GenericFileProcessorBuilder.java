@@ -1,7 +1,6 @@
 package FeeCalculator.FeeCalculator;
 
 import org.configuration.CONSTANT;
-import org.configuration.Configuration;
 import org.filereader.CSVFileReader;
 import org.filereader.Reader;
 import org.filewriter.CSVFileWriter;
@@ -10,6 +9,10 @@ import org.processing.Processor;
 import org.processing.RuleProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+/*
+ * building file processor based on different parameter. 
+ */
 
 public class GenericFileProcessorBuilder {
 	private static final Logger LOG = LoggerFactory.getLogger(GenericFileProcessorBuilder.class);

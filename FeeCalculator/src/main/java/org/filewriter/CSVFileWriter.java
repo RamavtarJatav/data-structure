@@ -6,12 +6,14 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.Set;
-
 import org.configuration.CONSTANT;
 import org.model.ProcessingFee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+/*
+ * CSV Output file writer 
+ */
 
 public class CSVFileWriter implements OutputFileWriter {
 	private static final Logger LOG = LoggerFactory.getLogger(CSVFileWriter.class);

@@ -15,7 +15,7 @@ public class Configuration {
 
 	private static final String DEFAULT = "application.properties";
 
-	private static final String DEFAULT_HEADER = "Different properties ";
+	private static final String DEFAULT_HEADER = "Various configuration properties ";
 
 	private Properties properties = new Properties();
 
@@ -24,22 +24,24 @@ public class Configuration {
 	private Configuration() {
 
 	}
-    
-	public static Configuration getStandard()  {
-		
+
+	public static Configuration getStandard() {
+		LOG.debug("{}", new Object[] { " creating configuration" });
 		if (configuration == null) {
 			try {
 				createStandardwithFile(new File(DEFAULT));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				LOG.error("{}", new Object[] { " IOException in createStandardwithFile  Method", e.getMessage(), e });
+				return null;
 			}
 		}
-
+		LOG.debug("{}", new Object[] { " configuration creation successful" });
 		return configuration;
 	}
 
 	static void createStandardwithFile(File file) throws IOException {
+
 		configuration = new Configuration();
 		if (file.exists()) {
 			configuration.load(file);
@@ -49,12 +51,19 @@ public class Configuration {
 	}
 
 	public void load(File file) throws IOException {
+		LOG.debug("{}", new Object[] { " loading input file = " + DEFAULT });
 		InputStream inputStream = new FileInputStream(file);
 		properties.load(inputStream);
+
+		LOG.debug("{}", new Object[] { " loading input file successful = " + DEFAULT });
 	}
 
 	public void store(File file) throws IOException {
+		LOG.debug("{}",
+				new Object[] { " storing default data in  input file in case it is not available =" + DEFAULT });
 		store(file, DEFAULT_HEADER);
+		LOG.debug("{}", new Object[] {
+				" creation of input file sucessful and default configuration data is saved in it=" + DEFAULT });
 	}
 
 	public void store(File file, String header) throws IOException {
@@ -69,18 +78,18 @@ public class Configuration {
 	public void set(String key, String value) {
 		properties.put(key, value);
 	}
-	
+
 	public String getString(String key) {
 		return properties.getProperty(key);
 	}
-	
+
 	public float getFloat(String key) {
-		return  Float.parseFloat(properties.getProperty(key));
+		return Float.parseFloat(properties.getProperty(key));
 	}
-	
-   public Properties getProperties() {
-	   return this.properties;
-   }
+
+	public Properties getProperties() {
+		return this.properties;
+	}
 
 	public class Keys {
 		public static final String INPUT_FILE_DIRECTORY = "INPUT_FILE_DIRECTORY";
@@ -95,7 +104,7 @@ public class Configuration {
 		// Fee for various Transaction
 
 		public static final String BUY_FEE = "BUY_FEE";
-		public static final String SELL_FEE = "BUY_FEE";
+		public static final String SELL_FEE = "SELL_FEE";
 		public static final String DEPOSIT_FEE = "DEPOSIT_FEE";
 		public static final String WITHDRAW_FEE = "WITHDRAW_FEE";
 		public static final String INTRADAY_FEE = "INTRADAY_FEE";

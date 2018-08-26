@@ -2,7 +2,6 @@ package org.filereader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +15,10 @@ import org.configuration.CONSTANT;
 import org.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+/*
+ * This is csv file reader. the read csv input file and map the transaction based on date map. 
+ */
 
 public class CSVFileReader implements Reader {
 	private static final Logger LOG = LoggerFactory.getLogger(CSVFileReader.class);

@@ -9,6 +9,10 @@ import org.model.ProcessingFee;
 import org.model.Transaction;
 import org.processing.Processor;
 
+/*
+ * the Gerneric file processr read the input file and read it and process it according to rule book.
+ *  and generate reuqired output file.
+ */
 public class GenericFileProcessor {
 
 	private  Reader reader;

@@ -1,14 +1,13 @@
 package FeeCalculator.FeeCalculator;
 
-import java.io.IOException;
-
-import org.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+ *  Start of main application 
+ */
 public class FileProcessingApplication {
 	private static final Logger LOG = LoggerFactory.getLogger(FileProcessingApplication.class);
-
 
 	public static void main(String[] args) {
 		LOG.debug("{}", new Object[] { "Starting of application" });

@@ -6,13 +6,13 @@ public class DefaultConfig {
 		// input file related configuration
 		config.set(Configuration.Keys.INPUT_FILE_DIRECTORY, "input/");
 		config.set(Configuration.Keys.INPUT_FILE_NAME, "input.csv");
-		config.set(Configuration.Keys.INPUT_FILE_TYPE, "csv");
+		config.set(Configuration.Keys.INPUT_FILE_TYPE, "CSV");
 		config.set(Configuration.Keys.INPUT_FILE_DATE_FORMAT, "MM/dd/yyyy");
 
 		// output file configuration
 		config.set(Configuration.Keys.OUTPUT_FILE_DIRECTORY, "output/");
 		config.set(Configuration.Keys.OUTPUT_FILE_NAME, "output.csv");
-		config.set(Configuration.Keys.OUTPUT_FILE_TYPE, "csv");
+		config.set(Configuration.Keys.OUTPUT_FILE_TYPE, "CSV");
 		config.set(Configuration.Keys.INPUT_FILE_DIRECTORY, "input/");
 
 		// Fee for various kind of Transaction
