@@ -11,6 +11,6 @@ public interface Processor {
 
 	void process(Map<Long, List<Transaction>> transactionListbyDate);
 
-	Set<ProcessingFee> getProcessedData();
+	Map<ProcessingFee, Double> getProcessedData();
 
 }

@@ -1,72 +1,77 @@
 package org.filewriter;
 
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 import org.configuration.CONSTANT;
 import org.model.ProcessingFee;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CSVFileWriter implements OutputFileWriter {
+	private static final Logger LOG = LoggerFactory.getLogger(CSVFileWriter.class);
+	private String DELIMITER = ",";
 
 	@Override
-	public void write(Set<ProcessingFee> feeproclist) {
-		String COMMA_DELIMITER = ",";
+	public void write(Map<ProcessingFee, Double> feeprocMap) {
+		LOG.debug("{}",
+				new Object[] { " start of writing processed date to output File ", CONSTANT.OUTPUT_FILE_DIRECTORY });
 
 		String NEW_LINE_SEPARATOR = "\n";
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(CONSTANT.OUTPUT_FILE_DIRECTORY);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+
+			LOG.error("{}", new Object[] { " Exception in creating output File ", CONSTANT.OUTPUT_FILE_DIRECTORY });
 		}
-        
-		//feeproclist.sort(new ReportCamparator());
-		
-		for (ProcessingFee processingFee : feeproclist) {
 
-			try {
-				fileWriter.append(processingFee.getClientId());
-				fileWriter.append(COMMA_DELIMITER);
+		try {
+			for (Map.Entry<ProcessingFee, Double> entrySet : feeprocMap.entrySet()) {
 
-				fileWriter.append(processingFee.getTransactionType());
-				fileWriter.append(COMMA_DELIMITER);
+				fileWriter.append(entrySet.getKey().getClientId());
+				fileWriter.append(DELIMITER);
+				fileWriter.append(entrySet.getKey().getTransactionType());
+				fileWriter.append(DELIMITER);
 
-				Date date = new Date(processingFee.getTransactionDate());
+				Date date = new Date(entrySet.getKey().getTransactionDate());
 				Format format = new SimpleDateFormat("dd/MM/yyyy");
-
 				fileWriter.append(format.format(date));
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(String.valueOf(processingFee.getProcessingFee()));
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(processingFee.getPriority());
-				fileWriter.append(NEW_LINE_SEPARATOR);
 
-			} catch (Exception e) {
-				e.printStackTrace();
+				fileWriter.append(DELIMITER);
+				fileWriter.append(entrySet.getKey().getPriority());
+				fileWriter.append(DELIMITER);
+				fileWriter.append(String.valueOf(entrySet.getValue()));
+				fileWriter.append(NEW_LINE_SEPARATOR);
 			}
 
+		} catch (Exception e) {
+			LOG.error("{}", new Object[] { " Exception in writing to output File = " + CONSTANT.OUTPUT_FILE_DIRECTORY,
+					e.getMessage(), e });
 		}
 
 		try {
 			fileWriter.flush();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
+			LOG.error("{}",
+					new Object[] { " Exception in flusihing data to output File = " + CONSTANT.OUTPUT_FILE_DIRECTORY,
+							e.getMessage(), e });
+		} finally {
 			try {
 				fileWriter.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOG.error("{}", new Object[] { " Exception in closing output File = " + CONSTANT.OUTPUT_FILE_DIRECTORY,
+						e.getMessage(), e });
 			}
 		}
-		
+		LOG.debug("{}",
+				new Object[] { " writing processed data to output File sucessful ", CONSTANT.OUTPUT_FILE_DIRECTORY });
 
 	}
 }
